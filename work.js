@@ -53,6 +53,14 @@ async function processFile(accessToken){
     try {
         console.log("Processing file (fetching master scrip paths)...");
         const response = await axios(config);
+        // Extract URLs from response data and store in array
+        const urls = response.data.data.map(item => item.url);
+        
+        // Print the URLs
+        console.log("Retrieved URLs:");
+        urls.forEach((url, index) => {
+            console.log(`${index + 1}. ${url}`);
+        });
         console.log("Process File Response Received.");
         return response.data; // Return the data
     } catch (error) {
@@ -71,7 +79,7 @@ async function runCommands() {
 
         // 2. Define and Execute TOTP Login Curl
         // IMPORTANT: The TOTP code below needs to be updated frequently!
-        const currentTOTP = "491647"; // <<< Replace with the current valid TOTP before running
+        const currentTOTP = "281461"; // <<< Replace with the current valid TOTP before running
         const mobileNumber = "+919610684338";
         const ucc = "XVP9K";
 
